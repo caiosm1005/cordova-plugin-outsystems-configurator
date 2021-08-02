@@ -1,8 +1,8 @@
 # cordova-plugin-outsystems-configurator
 
-Plugin that allows changing application settings by using a set of custom preferences defined in the Extensibility Configurations of your module.
+Plugin that allows changing application settings by using a set of [custom preferences defined in the Extensibility Configurations of your module](https://success.outsystems.com/Documentation/11/Delivering_Mobile_Apps/Customize_Your_Mobile_App/Set_the_Preferences_for_Your_Mobile_App).
 
-This plugin runs during the `before_compile` hook that is triggered by Cordova while building the app. This helps mitigate conflicts such as having permission usage messages for iOS being overriden or reset by one of the referenced plugins.
+This plugin runs during the `before_compile` hook that is triggered by Cordova while building the app. This helps mitigate conflicts such as having permission request messages for iOS being overriden by other referenced plugins.
 
 ### Preference Names
 
