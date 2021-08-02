@@ -1,0 +1,31 @@
+{
+    "name": "cordova-plugin-outsystems-configurator",
+    "version": "0.0.1",
+    "description": "Cordova configurator plugin for OutSystems mobile applications.",
+    "author": "Caio Santana Magalhães <caio.santana@digitalalchimia.com>",
+    "cordova": {
+        "id": "cordova-plugin-outsystems-configurator",
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [
+        "cordova"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.5.0"
+        }
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "plist": "^3.0.2",
+        "xml-js": "^1.6.11"
+    }
+}

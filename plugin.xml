@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-outsystems-configurator" version="0.0.1">
+    <name>Configurator Plugin</name>
+    <description>Cordova configurator plugin for OutSystems mobile applications.</description>
+    <author>Caio Santana Magalhães</author>
+    <keywords>cordova</keywords>
+    <license>MIT</license>
+    <engines>
+        <engine name="cordova" version=">=3.5.0" />
+    </engines>
+    <platform name="android">
+        <hook type="before_compile" src="scripts/androidBeforeCompile.js" />
+    </platform>
+    <platform name="ios">
+        <hook type="before_compile" src="scripts/iosBeforeCompile.js" />
+    </platform>
+</plugin>
