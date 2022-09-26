@@ -24,6 +24,9 @@ module.exports = new Promise( ( resolve, reject ) => {
             // Save to file
             Utilities.writeAndroidStringsXmlFileContents( stringsXml );
         }
+        else {
+            throw Error( "Unable to find strings.xml file." );
+        }
         
     	resolve();
 	}

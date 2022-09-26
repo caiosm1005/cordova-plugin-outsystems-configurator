@@ -31,7 +31,15 @@ module.exports = {
      */
     getApplicationName: function() {
         var configObj = this.getConfigXmlContents();
-        return configObj.name._text;
+        return this.trimString( configObj.name._text );
+    },
+
+    /**
+     * Get application ID (package name)
+     */
+    getApplicationId: function() {
+        var configObj = this.getConfigXmlContents();
+        return this.trimString( configObj._attributes.id );
     },
 
     /**
@@ -259,5 +267,21 @@ module.exports = {
         }
 
         return variables;
+    },
+
+    /**
+     * Trim string
+     */
+    trimString: function( str ) {
+        return str.replace( /^\s+/, "" ).replace( /\s+$/, "" );
+    },
+
+    /**
+     * Compare strings (after trimming and case-insensitive)
+     */ 
+    compareStrings: function( strA, strB ) {
+        strA = this.trimString( strA ).toLowerCase();
+        strB = this.trimString( strB ).toLowerCase();
+        return strA == strB;
     }
 };

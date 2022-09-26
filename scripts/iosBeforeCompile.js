@@ -23,40 +23,26 @@ module.exports = new Promise( ( resolve, reject ) => {
                 // Replace spacing characters with a special spacing for improving the name of the app in the homescreen
                 // Source: https://stackoverflow.com/a/58393735/1608072
                 plistObj.CFBundleDisplayName = preferences[ PreferenceNames.OsApplicationShortName ];
+                plistObj.CFBundleName = preferences[ PreferenceNames.OsApplicationShortName ];
             }
-            if ( preferences[ PreferenceNames.OsPhotoLibraryUsageDescription ] ) {
-                plistObj.NSPhotoLibraryUsageDescription = preferences[ PreferenceNames.OsPhotoLibraryUsageDescription ];
-            }
-            if ( preferences[ PreferenceNames.OsPhotoLibraryAddUsageDescription ] ) {
-                plistObj.NSPhotoLibraryAddUsageDescription = preferences[ PreferenceNames.OsPhotoLibraryAddUsageDescription ];
-            }
-            if ( preferences[ PreferenceNames.OsCameraUsageDescription ] ) {
-                plistObj.NSCameraUsageDescription = preferences[ PreferenceNames.OsCameraUsageDescription ];
-            }
-            if ( preferences[ PreferenceNames.OsLocationUsageDescription ] ) {
-                plistObj.NSLocationWhenInUseUsageDescription = preferences[ PreferenceNames.OsLocationUsageDescription ];
-            }
-            if ( preferences[ PreferenceNames.OsLocationAlwaysUsageDescription ] ) {
-                plistObj.NSLocationAlwaysUsageDescription = preferences[ PreferenceNames.OsLocationAlwaysUsageDescription ];
-            }
-            if ( preferences[ PreferenceNames.OsContactsUsageDescription ] ) {
-                plistObj.NSContactsUsageDescription = preferences[ PreferenceNames.OsContactsUsageDescription ];
-            }
-            if ( preferences[ PreferenceNames.OsCalendarUsageDescription ] ) {
-                plistObj.NSCalendarsUsageDescription = preferences[ PreferenceNames.OsCalendarUsageDescription ];
-            }
-            if ( preferences[ PreferenceNames.OsNfcUsageDescription ] ) {
-                plistObj.NFCReaderUsageDescription = preferences[ PreferenceNames.OsNfcUsageDescription ];
-            }
-            if ( preferences[ PreferenceNames.OsBluetoothUsageDescription ] ) {
-                plistObj.NSBluetoothPeripheralUsageDescription = preferences[ PreferenceNames.OsBluetoothUsageDescription ];
-            }
-            if ( preferences[ PreferenceNames.OsMicrophoneUsageDescription ] ) {
-                plistObj.NSMicrophoneUsageDescription = preferences[ PreferenceNames.OsMicrophoneUsageDescription ];
+            if ( preferences[ PreferenceNames.OsUserInterfaceStyle ] ) {
+                var value = preferences[ PreferenceNames.OsUserInterfaceStyle ];
+                if ( Utilities.compareStrings( value, "automatic" ) ) {
+                    plistObj.UIUserInterfaceStyle = "Automatic";
+                }
+                else if ( Utilities.compareStrings( value, "light" ) ) {
+                    plistObj.UIUserInterfaceStyle = "Light";
+                }
+                else if ( Utilities.compareStrings( value, "dark" ) ) {
+                    plistObj.UIUserInterfaceStyle = "Dark";
+                }
             }
 
             // Save to file
             Utilities.writeIosPlistFileContents( plistObj );
+        }
+        else {
+            throw Error( "Unable to find " + Utilities.getApplicationName() + "-Info.plist file." );
         }
 
         resolve();
