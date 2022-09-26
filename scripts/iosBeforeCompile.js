@@ -26,7 +26,6 @@ module.exports = new Promise( ( resolve, reject ) => {
                     preferences[ PreferenceNames.OsAppIdentifierTesting ],
                     preferences[ PreferenceNames.OsAppIdentifierPreProduction ] );
             }
-            appName = Utilities.applyIosImprovedSpaces( appName );
             plistObj.CFBundleDisplayName = appName;
             plistObj.CFBundleName = appName;
 
