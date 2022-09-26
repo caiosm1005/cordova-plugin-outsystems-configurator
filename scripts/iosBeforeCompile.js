@@ -18,13 +18,19 @@ module.exports = new Promise( ( resolve, reject ) => {
                 }
             }
 
-            // Set variables according to preferences
-            if ( preferences[ PreferenceNames.OsApplicationShortName ] ) {
-                // Replace spacing characters with a special spacing for improving the name of the app in the homescreen
-                // Source: https://stackoverflow.com/a/58393735/1608072
-                plistObj.CFBundleDisplayName = preferences[ PreferenceNames.OsApplicationShortName ];
-                plistObj.CFBundleName = preferences[ PreferenceNames.OsApplicationShortName ];
+            // Set application name
+            var appName = preferences[ PreferenceNames.OsApplicationShortName ] || Utilities.getApplicationName();
+            if ( Utilities.compareStrings( preferences[ PreferenceNames.OsAddEnvironmentSuffixToName ], "true" ) ) {
+                appName = Utilities.addEnvironmentSuffix( appName,
+                    preferences[ PreferenceNames.OsAppIdentifierDevelopment ],
+                    preferences[ PreferenceNames.OsAppIdentifierTesting ],
+                    preferences[ PreferenceNames.OsAppIdentifierPreProduction ] );
             }
+            appName = Utilities.applyIosImprovedSpaces( appName );
+            plistObj.CFBundleDisplayName = appName;
+            plistObj.CFBundleName = appName;
+
+            // Check for OS UI Style
             if ( preferences[ PreferenceNames.OsUserInterfaceStyle ] ) {
                 var value = preferences[ PreferenceNames.OsUserInterfaceStyle ];
                 if ( Utilities.compareStrings( value, "automatic" ) ) {

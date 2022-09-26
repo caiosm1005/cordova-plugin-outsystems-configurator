@@ -270,6 +270,33 @@ module.exports = {
     },
 
     /**
+     * Add Environment Suffix
+     */
+    addEnvironmentSuffix: function( appName, appIdentifierDevelopment, appIdentifierTesting, appIdentifierPreProduction ) {
+        var currentAppIdentifier = this.getApplicationId();
+        var suffix = "";
+        if ( this.compareStrings( appIdentifierDevelopment, currentAppIdentifier ) ) {
+            suffix = " (Dev)";
+        }
+        else if ( this.compareStrings( appIdentifierTesting, currentAppIdentifier ) ) {
+            suffix = " (Test)";
+        }
+        else if ( this.compareStrings( appIdentifierPreProduction, currentAppIdentifier ) ) {
+            suffix = " (PreProd)";
+        }
+        return appName + suffix;
+    },
+
+    /**
+     * Apply iOS Improved Spaces
+     */
+    applyIosImprovedSpaces: function( str ) {
+        // Replace spacing characters with a special spacing for improving the name of the app in the homescreen
+        // Source: https://stackoverflow.com/a/58393735/1608072
+        return str.replace( /\s/g, "\u2007" );
+    },
+
+    /**
      * Trim string
      */
     trimString: function( str ) {
@@ -280,8 +307,8 @@ module.exports = {
      * Compare strings (after trimming and case-insensitive)
      */ 
     compareStrings: function( strA, strB ) {
-        strA = this.trimString( strA ).toLowerCase();
-        strB = this.trimString( strB ).toLowerCase();
+        strA = this.trimString( strA || "" ).toLowerCase();
+        strB = this.trimString( strB || "" ).toLowerCase();
         return strA == strB;
     }
 };
