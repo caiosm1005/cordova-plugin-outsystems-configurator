@@ -3,6 +3,7 @@
 var fs = require( "fs" );
 var plist = require( "plist" );
 var convert = require( "xml-js" );
+var PreferenceNames = require( "./preferenceNames.js" );
 
 // Array forEach polyfill
 if ( ! Array.prototype.forEach ) {
