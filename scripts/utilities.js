@@ -270,27 +270,33 @@ module.exports = {
     },
 
     /**
-     * Add Environment Suffix
+     * Get Formatted App Name
      */
-    addEnvironmentSuffix: function( appName, appIdentifierDevelopment, appIdentifierTesting, appIdentifierPreProduction ) {
-        var currentAppIdentifier = this.getApplicationId();
-        var suffix = "";
-        if ( this.compareStrings( appIdentifierDevelopment, currentAppIdentifier ) ) {
-            suffix = " (Dev)";
+    getFormattedAppName: function( preferences ) {
+        var appName = preferences[ PreferenceNames.OsApplicationShortName ] || this.getApplicationName();
+        if ( Utilities.compareStrings( preferences[ PreferenceNames.OsAddEnvironmentSuffixToName ], "true" ) ) {
+            var suffix = "";
+            var appIdentifier = this.getApplicationId();
+            if ( this.compareStrings( preferences[ PreferenceNames.OsAppIdentifierDevelopment ], appIdentifier ) ) {
+                suffix = preferences[ PreferenceNames.OsEnvironmentSuffixDevelopment ] || "Dev";
+            }
+            else if ( this.compareStrings( preferences[ PreferenceNames.OsAppIdentifierTesting ], appIdentifier ) ) {
+                suffix = preferences[ PreferenceNames.OsEnvironmentSuffixTesting ] || "Test";
+            }
+            else if ( this.compareStrings( preferences[ PreferenceNames.OsAppIdentifierPreProduction ], appIdentifier ) ) {
+                suffix = preferences[ PreferenceNames.OsEnvironmentSuffixPreProduction ] || "PreProd";
+            }
+            if ( suffix ) {
+                appName += " (" + suffix + ")";
+            }
         }
-        else if ( this.compareStrings( appIdentifierTesting, currentAppIdentifier ) ) {
-            suffix = " (Test)";
-        }
-        else if ( this.compareStrings( appIdentifierPreProduction, currentAppIdentifier ) ) {
-            suffix = " (PreProd)";
-        }
-        return appName + suffix;
+        return appName;
     },
 
     /**
-     * Apply iOS Improved Spaces
+     * Apply String Figure Spaces
      */
-    applyIosImprovedSpaces: function( str ) {
+    applyStringFigureSpaces: function( str ) {
         // Replace spacing characters with a special spacing for improving the name of the app in the homescreen
         // Source: https://stackoverflow.com/a/58393735/1608072
         return str.replace( /\s/g, "\u2007" );

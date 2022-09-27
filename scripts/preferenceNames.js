@@ -3,9 +3,13 @@
 module.exports = {
 	OsApplicationShortName: "osapplicationshortname",
 	OsUserInterfaceStyle: "osuserinterfacestyle",
+	OsUseTitleFigureSpaces: "osusetitlefigurespaces",
 	OsAppIdentifierDevelopment: "osappidentifierdevelopment",
 	OsAppIdentifierTesting: "osappidentifiertesting",
 	OsAppIdentifierPreProduction: "osappidentifierpreproduction",
 	OsAppIdentifierProduction: "osappidentifierproduction",
-	OsAddEnvironmentSuffixToName: "osaddenvironmentsuffixtoname"
+	OsAddEnvironmentSuffixToName: "osaddenvironmentsuffixtoname",
+	OsEnvironmentSuffixDevelopment: "osenvironmentsuffixdevelopment",
+	OsEnvironmentSuffixTesting: "osenvironmentsuffixtesting",
+	OsEnvironmentSuffixPreProduction: "osenvironmentsuffixpreproduction"
 };

@@ -19,12 +19,9 @@ module.exports = new Promise( ( resolve, reject ) => {
             }
 
             // Set application name
-            var appName = preferences[ PreferenceNames.OsApplicationShortName ] || Utilities.getApplicationName();
-            if ( Utilities.compareStrings( preferences[ PreferenceNames.OsAddEnvironmentSuffixToName ], "true" ) ) {
-                appName = Utilities.addEnvironmentSuffix( appName,
-                    preferences[ PreferenceNames.OsAppIdentifierDevelopment ],
-                    preferences[ PreferenceNames.OsAppIdentifierTesting ],
-                    preferences[ PreferenceNames.OsAppIdentifierPreProduction ] );
+            var appName = Utilities.getFormattedAppName( preferences );
+            if ( Utilities.compareStrings( preferences[ PreferenceNames.OsUseImprovedTitleSpaces ], "true" ) ) {
+                appName = Utilities.applyStringFigureSpaces( appName );
             }
             plistObj.CFBundleDisplayName = appName;
             plistObj.CFBundleName = appName;
