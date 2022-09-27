@@ -275,7 +275,7 @@ module.exports = {
      */
     getFormattedAppName: function( preferences ) {
         var appName = preferences[ PreferenceNames.OsApplicationShortName ] || this.getApplicationName();
-        if ( Utilities.compareStrings( preferences[ PreferenceNames.OsAddEnvironmentSuffixToName ], "true" ) ) {
+        if ( this.compareStrings( preferences[ PreferenceNames.OsAddEnvironmentSuffixToName ], "true" ) ) {
             var suffix = "";
             var appIdentifier = this.getApplicationId();
             if ( this.compareStrings( preferences[ PreferenceNames.OsAppIdentifierDevelopment ], appIdentifier ) ) {
